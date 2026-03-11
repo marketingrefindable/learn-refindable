@@ -212,7 +212,7 @@ nav{padding:12px 16px}.nl{display:none}.hero{padding:96px 18px 44px;min-height:3
 </div>
 </div>
 
-<div class="co co-i"><div class="tg">ℹ️ YOUR ROLE</div><p>As a call center agent, your primary job is to <strong>catch leads who start the process but don't finish</strong>. The app handles most enrollments automatically — you step in when someone drops off, needs help, or has questions. You are the safety net that ensures no potential client falls through the cracks.</p></div>
+<div class="co co-i"><div class="tg">ℹ️ YOUR ROLE</div><p>As a call center agent, you have two jobs: <strong>(1) Catch leads who start the process but don't finish</strong> — re-warm them and guide them through enrollment. <strong>(2) Review completed enrollments</strong> — verify info, confirm the plan, and create the subscription. In both cases, <strong>you are the one who creates the subscription manually</strong>. No subscription = no payment = no enrollment.</p></div>
 
 <!-- ══════════════ II. CRM STRUCTURE ══════════════ -->
 <div class="sh" id="crm"><span class="nm">II</span><h2>CRM Structure</h2></div>
@@ -253,7 +253,7 @@ nav{padding:12px 16px}.nl{display:none}.hero{padding:96px 18px 44px;min-height:3
 <tr><td><strong>Ready to Enroll</strong></td><td>All requirements are met. The client has chosen a plan and payment info is confirmed.</td><td>Agent</td></tr>
 <tr><td><strong>Submitted to Processing</strong></td><td>Enrollment has been submitted to the broker for processing.</td><td>Agent</td></tr>
 <tr><td><strong>Program Active</strong></td><td>The client is enrolled and the monthly subscription is running. <strong>This is Closed Won.</strong></td><td>Agent or Automatic</td></tr>
-<tr><td><strong>Suspended Client</strong></td><td>A payment has failed for more than 1 billing cycle. Moved <strong>automatically</strong> after 1 month of non-payment.</td><td>Automatic</td></tr>
+<tr><td><strong>Suspended Client</strong></td><td>Legacy stage for clients with payment issues (migrated from Forth). In the new flow, deals stay in Program Active — subscription status changes instead. See Section VII.</td><td>Legacy / Manual</td></tr>
 <tr><td><strong>Closed Lost</strong></td><td>The contact is not interested, unreachable after 5 attempts, or otherwise disqualified.</td><td>Agent</td></tr>
 </tbody>
 </table>
@@ -271,7 +271,7 @@ nav{padding:12px 16px}.nl{display:none}.hero{padding:96px 18px 44px;min-height:3
 <thead><tr><th>Property</th><th>What it is</th><th>Who fills it</th></tr></thead>
 <tbody>
 <tr><td><code>Lifecycle Stage</code></td><td>Where the contact is in the funnel: Lead → Opportunity → Customer</td><td>Automatic/Agent</td></tr>
-<tr><td><code>Lead Status</code></td><td>New, Attempted to Contact, Connected, Open Deal, etc.</td><td>Agent (update this!)</td></tr>
+
 <tr><td><code>Employer</code></td><td>Name of the employer company</td><td>Form/App/Agent</td></tr>
 <tr><td><code>Client ID</code></td><td>Unique employer identifier (links to company record)</td><td>Automatic</td></tr>
 <tr><td><code>Loan Status</code></td><td>Current, Grace Period, Deferment, Defaulted, Late, Forbearance, etc.</td><td>Form/App/Agent</td></tr>
@@ -335,7 +335,7 @@ nav{padding:12px 16px}.nl{display:none}.hero{padding:96px 18px 44px;min-height:3
 <div class="sl"></div>
 <a class="vb" href="#"><span>▶</span> Watch the Video Guide</a>
 
-<div class="co co-i"><div class="tg">ℹ️ YOUR DAY AT A GLANCE</div><p>Log in → Check your task queue → Call leads who dropped from the app → Complete their data → Create deal → Help them choose a plan → Create subscription → Send invoice → Close deal.</p></div>
+<div class="co co-i"><div class="tg">ℹ️ YOUR DAY AT A GLANCE</div><p>Log in → Check your task queue → Each task is linked to a deal → Open the deal to see what stage it's in → Call the contact → Complete missing data if needed → Help them choose a plan → Create the subscription → Confirm next steps → Move deal to next stage.</p></div>
 
 <div class="st">
 <div class="st-h"><span class="st-n">1</span><span class="st-t">Start of Day: Log In & Check Tasks</span></div>
@@ -353,34 +353,31 @@ nav{padding:12px 16px}.nl{display:none}.hero{padding:96px 18px 44px;min-height:3
 </div>
 
 <div class="st">
-<div class="st-h"><span class="st-n">2</span><span class="st-t">Find a Lead to Call</span></div>
+<div class="st-h"><span class="st-n">2</span><span class="st-t">Open Your Next Task</span></div>
 <div class="st-b">
-<p>Each task will be linked to a contact. Click the contact name to open their record. Before calling, review:</p>
+<p>Each task will be linked to a <strong>deal</strong> (and the deal is linked to a contact). Click the deal name to open the record. Before calling, review:</p>
 <ul>
 <li><strong>How they arrived</strong> — Did they come from the app? Landing page? Import?</li>
 <li><strong>What data is already filled</strong> — Check if loan info, employer, income are already there</li>
 <li><strong>Previous activity</strong> — Have they been called before? Check the timeline</li>
-<li><strong>Lead Status</strong> — Is this "New" (first contact) or "Attempted to Contact" (follow-up)?</li>
+<li><strong>Deal Stage</strong> — Check the associated deal. What stage is it in? This tells you what the task is about.</li>
 </ul>
 </div>
 <div class="sc"><div class="lb">Screenshot: Contact record showing timeline, properties, and activity</div><div class="ht">Open a contact record → Show full view with left sidebar + timeline</div></div>
 </div>
 
 <div class="st">
-<div class="st-h"><span class="st-n">3</span><span class="st-t">Update Lead Status Before Calling</span></div>
+<div class="st-h"><span class="st-n">3</span><span class="st-t">Understanding Your Tasks</span></div>
 <div class="st-b">
-<p>Before you make the call, update the <strong>Lead Status</strong> property on the contact:</p>
+<p>A <strong>deal is always created</strong> when someone signs up through the app, no matter how far they got. A <strong>task is always created</strong> when the deal is created. The type of task depends on where the person dropped off:</p>
 <table class="dt">
-<thead><tr><th>Status</th><th>When to use</th></tr></thead>
+<thead><tr><th>Scenario</th><th>Deal Stage</th><th>Your Task</th></tr></thead>
 <tbody>
-<tr><td><strong>New</strong></td><td>Contact just arrived, never been touched</td></tr>
-<tr><td><strong>Attempted to Contact</strong></td><td>You called but didn't reach them</td></tr>
-<tr><td><strong>Connected</strong></td><td>You spoke with them on the phone</td></tr>
-<tr><td><strong>Open Deal</strong></td><td>A deal has been created for this contact</td></tr>
-<tr><td><strong>Unqualified</strong></td><td>Not eligible for Finnita's service</td></tr>
-<tr><td><strong>Bad Timing</strong></td><td>Interested but not right now — schedule follow-up</td></tr>
+<tr><td><strong>Completed full enrollment in app</strong></td><td>Assessment Completed (or further)</td><td>Review call — verify info with the client, confirm plan choice, create subscription</td></tr>
+<tr><td><strong>Dropped off during enrollment</strong></td><td>New Deal or Appointment Scheduled</td><td>Re-engagement call — re-warm the lead, collect missing data, explain plans, guide them through enrollment</td></tr>
 </tbody>
 </table>
+<p style="margin-top:10px"><strong>Key principle:</strong> Everything revolves around the deal. The deal stage tells you what happened. The task tells you what to do next.</p>
 </div>
 </div>
 
@@ -412,11 +409,11 @@ nav{padding:12px 16px}.nl{display:none}.hero{padding:96px 18px 44px;min-height:3
 <table class="dt">
 <thead><tr><th>Attempt</th><th>Action</th><th>If no answer</th></tr></thead>
 <tbody>
-<tr><td><strong>1</strong></td><td>Call + leave voicemail</td><td>Set Lead Status → "Attempted to Contact". Create follow-up task for next day.</td></tr>
+<tr><td><strong>1</strong></td><td>Call + leave voicemail</td><td>Log call outcome as "No answer". Create follow-up task for next day.</td></tr>
 <tr><td><strong>2</strong></td><td>Call again</td><td>Log call. Create follow-up task.</td></tr>
 <tr><td><strong>3</strong></td><td>Call + send follow-up email/SMS</td><td>Log call + email. Create follow-up task.</td></tr>
 <tr><td><strong>4</strong></td><td>Call again</td><td>Log call. Create follow-up task.</td></tr>
-<tr><td><strong>5 (final)</strong></td><td>Final call attempt</td><td>If no answer: Move deal to <strong>Closed Lost</strong>. Set Lead Status → "Unqualified".</td></tr>
+<tr><td><strong>5 (final)</strong></td><td>Final call attempt</td><td>If no answer: Move deal to <strong>Closed Lost</strong>.</td></tr>
 </tbody>
 </table>
 <div class="confirm">[CONFIRMAR] What is the time gap between attempts? (1 per day? every 2 days?) Also, after attempt 5 with no answer, should deal go to "Closed Lost" or is there another status?</div>
@@ -434,9 +431,11 @@ nav{padding:12px 16px}.nl{display:none}.hero{padding:96px 18px 44px;min-height:3
 <li><strong>Explain the plans</strong> — Walk them through available enrollment plans and help them choose</li>
 <li><strong>Explain pricing</strong> — Certification Fee (one-time) + Monthly Fee (recurring)</li>
 <li><strong>Create the subscription</strong> — If they agree, create the subscription right there (see Section VI)</li>
-<li><strong>Confirm next steps</strong> — They'll receive an invoice via email, what to expect after payment</li>
+<li><strong>Confirm next steps</strong> — They'll receive an invoice via email. They'll have a few days to pay.</li>
 </ul>
-<p style="margin-top:10px"><strong>After the call:</strong> Update Lead Status → "Connected" or "Open Deal". Log call notes. Move deal stage as appropriate.</p>
+<div class="co co-i"><div class="tg">💡 USE THE PLAYBOOK</div><p>HubSpot Playbooks are available to guide your calls. When you open a contact or deal, click <strong>"Playbooks"</strong> in the right panel to access the call script. The Playbook will walk you through each question step by step and auto-save answers to the right properties.</p></div>
+<div class="sc"><div class="lb">Screenshot: Playbook panel open during a call</div><div class="ht">Open a deal → Right panel → Playbooks → Show the active playbook with guided questions</div></div>
+<p style="margin-top:10px"><strong>After the call:</strong> Log call notes. Move the deal stage as appropriate. If a follow-up is needed, create a task with the correct due date.</p>
 </div>
 </div>
 
@@ -445,50 +444,55 @@ nav{padding:12px 16px}.nl{display:none}.hero{padding:96px 18px 44px;min-height:3
 <div class="sl"></div>
 <a class="vb" href="#"><span>▶</span> Watch the Video Guide</a>
 
-<div class="ss"><h3>Two Paths: App vs Call Center</h3></div>
-
-<div class="flow">
-<div class="flow-title">Path A — App Enrollment (Automatic)</div>
-<div class="flow-steps">
-<span class="flow-s">Employee uses app</span><span class="flow-arr">→</span>
-<span class="flow-s">Fills all data</span><span class="flow-arr">→</span>
-<span class="flow-s">Chooses plan</span><span class="flow-arr">→</span>
-<span class="flow-s">App creates subscription</span><span class="flow-arr">→</span>
-<span class="flow-s">Invoice sent auto</span><span class="flow-arr">→</span>
-<span class="flow-s">Pays</span><span class="flow-arr">→</span>
-<span class="flow-s active">Program Active ✅</span>
-</div>
+<div class="ss"><h3>Deal is Always Created</h3>
+<p>Every contact who signs up through the app gets a <strong>deal created automatically</strong>, regardless of how far they got. A <strong>task is also always created</strong> when the deal is created — but the task type depends on the deal stage:</p>
 </div>
 
 <div class="flow">
-<div class="flow-title">Path B — Call Center (Lead dropped from app)</div>
+<div class="flow-title">Path A — Client Completed Full Enrollment in App</div>
 <div class="flow-steps">
-<span class="flow-s warn">Lead drops off app</span><span class="flow-arr">→</span>
-<span class="flow-s">Task created</span><span class="flow-arr">→</span>
-<span class="flow-s">Agent calls (5 attempts)</span><span class="flow-arr">→</span>
-<span class="flow-s">Completes data</span><span class="flow-arr">→</span>
-<span class="flow-s">Creates deal</span><span class="flow-arr">→</span>
-<span class="flow-s">Helps choose plan</span><span class="flow-arr">→</span>
-<span class="flow-s active">Creates subscription</span><span class="flow-arr">→</span>
+<span class="flow-s">Employee completes app</span><span class="flow-arr">→</span>
+<span class="flow-s">Deal created (Assessment Completed)</span><span class="flow-arr">→</span>
+<span class="flow-s active">Task: Review Call</span><span class="flow-arr">→</span>
+<span class="flow-s">Agent verifies info</span><span class="flow-arr">→</span>
+<span class="flow-s active">Agent creates subscription</span><span class="flow-arr">→</span>
 <span class="flow-s">Invoice sent</span><span class="flow-arr">→</span>
 <span class="flow-s active">Program Active ✅</span>
 </div>
 </div>
 
+<div class="flow">
+<div class="flow-title">Path B — Client Dropped Off During App Enrollment</div>
+<div class="flow-steps">
+<span class="flow-s warn">Employee drops off app</span><span class="flow-arr">→</span>
+<span class="flow-s">Deal created (New Deal)</span><span class="flow-arr">→</span>
+<span class="flow-s active">Task: Re-engagement Call</span><span class="flow-arr">→</span>
+<span class="flow-s">Agent calls (5 attempts)</span><span class="flow-arr">→</span>
+<span class="flow-s">Completes data</span><span class="flow-arr">→</span>
+<span class="flow-s">Helps choose plan</span><span class="flow-arr">→</span>
+<span class="flow-s active">Agent creates subscription</span><span class="flow-arr">→</span>
+<span class="flow-s">Invoice sent</span><span class="flow-arr">→</span>
+<span class="flow-s active">Program Active ✅</span>
+</div>
+</div>
+
+<div class="co co-w"><div class="tg">⚠️ KEY DIFFERENCE</div><p>In <strong>Path A</strong>, most data is already filled — you're verifying and creating the subscription. In <strong>Path B</strong>, you're re-warming the lead, collecting missing data from scratch, AND creating the subscription. The subscription is <strong>always created manually by the call center</strong> in both paths.</p></div>
+
 <div class="st">
-<div class="st-h"><span class="st-n">1</span><span class="st-t">How to Create a Deal</span></div>
+<div class="st-h"><span class="st-n">1</span><span class="st-t">Working with Existing Deals</span></div>
 <div class="st-b">
-<p>If the contact doesn't have a deal yet and they're interested:</p>
+<p>Most deals will already exist when you get your task — they're created automatically when someone signs up through the app. Open the deal from your task or from the contact record's right panel under "Deals".</p>
+<p style="margin-top:8px">If a contact came from another source (landing page, referral) and doesn't have a deal yet, you can create one manually:</p>
 <ul>
 <li>From the contact record, click <strong>"+ Create Deal"</strong> in the right panel under "Deals"</li>
 <li>Set <strong>Pipeline</strong>: Sales Pipeline</li>
 <li>Set <strong>Deal Name</strong>: Use the contact's full name (e.g., "Sarah Tope")</li>
-<li>Set <strong>Deal Stage</strong>: Start at "New Deal" or skip to "Assessment Completed" if you already collected all data</li>
+<li>Set <strong>Deal Stage</strong>: Start at "New Deal"</li>
 <li>Fill in the <strong>required properties</strong> (see Section II, Step 3)</li>
 <li>Click <strong>Create</strong></li>
 </ul>
 </div>
-<div class="sc"><div class="lb">Screenshot: Create Deal dialog from contact record</div><div class="ht">Contact → Right panel → Deals → "+ Create" → Show the form</div></div>
+<div class="sc"><div class="lb">Screenshot: Deal record opened from a task, showing deal stage + properties</div><div class="ht">Open a deal from a task → Show full deal view with stage bar + right panel</div></div>
 </div>
 
 <div class="st">
@@ -543,13 +547,13 @@ nav{padding:12px 16px}.nl{display:none}.hero{padding:96px 18px 44px;min-height:3
 <li><strong>Step 3:</strong> Set the subscription name — use format: <code>[Employer Name] — [Contact Name]</code></li>
 <li><strong>Step 4:</strong> Add <strong>Product 1</strong> — Search for the employer's Certification Fee product (e.g., "Athens ISD — Certification Fee")</li>
 <li><strong>Step 5:</strong> Add <strong>Product 2</strong> — Search for the employer's Monthly Fee product (e.g., "Athens ISD — Monthly Fee")</li>
-<li><strong>Step 6:</strong> Set <strong>Billing Frequency</strong>: Monthly</li>
+<li><strong>Step 6:</strong> Set <strong>Billing Frequency</strong>: Monthly (this applies to Product 2 — the recurring Monthly Fee)</li>
 <li><strong>Step 7:</strong> Set <strong>Start Date</strong>: The date the first payment should be charged</li>
 <li><strong>Step 8:</strong> Set <strong>Number of Payments</strong>: According to the plan chosen by the client</li>
 <li><strong>Step 9:</strong> <strong>Double-check everything</strong> — amounts, dates, products, contact email</li>
 <li><strong>Step 10:</strong> Click <strong>Create</strong></li>
 </ul>
-<p style="margin-top:10px"><strong>What happens next:</strong> HubSpot automatically creates an invoice and sends it to the client's email. The client clicks the payment link in the email to pay.</p>
+<p style="margin-top:10px"><strong>What happens next:</strong> HubSpot automatically creates an invoice and sends it to the client's email. The client clicks the payment link in the email to pay. <strong>The client gets a few days to make the payment</strong> — the subscription status will be set to "Active" immediately, even before the client pays.</p>
 </div>
 <div class="sc"><div class="lb">Screenshot: Create Subscription dialog showing 2 products</div><div class="ht">Deal → Subscriptions → "+ Create" → Show the full form with both products added</div></div>
 </div>
@@ -559,7 +563,6 @@ nav{padding:12px 16px}.nl{display:none}.hero{padding:96px 18px 44px;min-height:3
 <li><strong>Wrong employer product</strong> — Each employer has specific products. Search carefully. "Athens ISD — Monthly Fee" is NOT the same as "Harmony ISD — Monthly Fee".</li>
 <li><strong>Wrong amount</strong> — Most monthly fees are $32.95, but some employers have custom pricing ($29.95, $33.95). Always verify.</li>
 <li><strong>Wrong contact email</strong> — The invoice goes to the email on the subscription. Make sure it's correct.</li>
-<li><strong>Forgetting to associate</strong> — The subscription must be associated with both the <strong>deal</strong> and the <strong>contact</strong>.</li>
 </ul>
 </div>
 
@@ -567,10 +570,11 @@ nav{padding:12px 16px}.nl{display:none}.hero{padding:96px 18px 44px;min-height:3
 <div class="st-h"><span class="st-n">3</span><span class="st-t">After Creating the Subscription</span></div>
 <div class="st-b">
 <ul>
-<li>Confirm with the client on the phone: <em>"You'll receive an email with your invoice shortly. Please check your inbox and spam folder."</em></li>
+<li>Confirm with the client on the phone: <em>"You'll receive an email with your invoice shortly. You'll have a few days to complete the payment. Please check your inbox and spam folder."</em></li>
+<li>The subscription status is set to <strong>"Active" automatically</strong> — you don't need to update this manually</li>
+<li>The subscription is <strong>automatically associated</strong> with both the deal and the contact</li>
 <li>Move the deal to <strong>"Paid"</strong> once the first payment is received</li>
 <li>Continue moving through stages: Ready to Enroll → Submitted to Processing → Program Active</li>
-<li>Update the contact's <strong>Subscription Status</strong> to "Active"</li>
 </ul>
 </div>
 </div>
@@ -597,14 +601,14 @@ nav{padding:12px 16px}.nl{display:none}.hero{padding:96px 18px 44px;min-height:3
 <div class="st-b">
 <p>If a monthly payment fails (e.g., client's card declines on March 5):</p>
 <table class="dt">
-<thead><tr><th>Timeline</th><th>What happens</th></tr></thead>
+<thead><tr><th>Timeline</th><th>Subscription Status</th><th>Deal</th><th>What happens</th></tr></thead>
 <tbody>
-<tr><td><strong>Day 0</strong> (March 5)</td><td>Payment fails. Invoice status → "Past Due". Payment Status → "Due"</td></tr>
-<tr><td><strong>Days 1-30</strong></td><td>Grace period. The client can still pay. HubSpot may retry automatically.</td></tr>
-<tr><td><strong>Day 30+</strong> (April 5)</td><td>If still unpaid: Deal automatically moves to <strong>"Suspended Client"</strong>. Subscription Status → "Past Due".</td></tr>
+<tr><td><strong>Day 0</strong></td><td><span class="sts s-p">Past Due</span></td><td>Stays in <strong>Program Active</strong> (Closed Won)</td><td>Payment fails. Client is still in grace period. HubSpot may retry or send a reminder.</td></tr>
+<tr><td><strong>Grace Period</strong></td><td><span class="sts s-p">Past Due</span></td><td>Stays in <strong>Program Active</strong></td><td>Client can still pay. Deal subscription status shows "Active" during this time.</td></tr>
+<tr><td><strong>After Grace Period</strong></td><td><span class="sts s-r">Cancelled</span></td><td>Stays in <strong>Program Active</strong> but subscription = Inactive</td><td><strong>Automatic:</strong> HubSpot cancels the subscription if no payment is detected. Deal now shows subscription as "Inactive".</td></tr>
 </tbody>
 </table>
-<div class="confirm">[CONFIRMAR] Does HubSpot automatically retry failed payments? If not, what triggers the retry? Also: is there a workflow/email that notifies the client about the failed payment?</div>
+<p style="margin-top:10px"><strong>Important:</strong> The deal does NOT move to "Suspended Client" in the new flow. The deal stays in Closed Won (Program Active). What changes is the <strong>subscription status</strong> — it goes from Active → Past Due → Cancelled. This is all handled automatically by HubSpot.</p>
 </div>
 </div>
 
@@ -617,7 +621,6 @@ nav{padding:12px 16px}.nl{display:none}.hero{padding:96px 18px 44px;min-height:3
 <li>Payment confirmation is automatic</li>
 <li>All payment history is visible on the deal and contact records</li>
 </ul>
-<div class="confirm">[CONFIRMAR] For existing clients migrated from Forth/NMI: are they also being moved to HubSpot Payments, or do they stay on the old system?</div>
 </div>
 </div>
 
@@ -706,7 +709,7 @@ nav{padding:12px 16px}.nl{display:none}.hero{padding:96px 18px 44px;min-height:3
 <tr><td>Standard Certification Fee</td><td><strong>$407.00</strong> (varies by employer)</td></tr>
 <tr><td>Standard Monthly Fee</td><td><strong>$32.95/month</strong> (varies: $29.95 - $33.95)</td></tr>
 <tr><td>Max call attempts per lead</td><td><strong>5</strong></td></tr>
-<tr><td>Days before Suspended (non-payment)</td><td><strong>~30 days</strong> (1 billing cycle)</td></tr>
+<tr><td>Days before Subscription Cancelled (non-payment)</td><td><strong>After grace period</strong> (auto by HubSpot)</td></tr>
 <tr><td>Total contacts in CRM</td><td><strong>5,848</strong></td></tr>
 <tr><td>Total employers</td><td><strong>122</strong></td></tr>
 <tr><td>Active deals (Program Active)</td><td><strong>2,428</strong></td></tr>
