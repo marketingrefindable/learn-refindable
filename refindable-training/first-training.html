@@ -192,7 +192,7 @@ body.light .cover-glow{background:radial-gradient(circle,rgba(79,70,229,.1) 0%,t
 body.light .crm-card img{filter:none}
 body.light .pipe-s{color:var(--t)}
 /* Theme toggle */
-.theme-toggle{width:36px;height:36px;border-radius:50%;border:1px solid var(--bd);background:var(--s2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all .2s;flex-shrink:0}
+.theme-toggle{min-width:36px;height:36px;border-radius:18px;border:1px solid var(--bd);background:var(--s2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;transition:all .2s;flex-shrink:0;padding:0 10px;gap:4px}
 .theme-toggle:hover{border-color:var(--ac);background:var(--acs)}
 /* Responsive */
 @media(max-width:640px){.cmp,.match-cols{grid-template-columns:1fr}.cg,.hg{grid-template-columns:1fr}.sr{flex-direction:column}.sl h1{font-size:24px}.bot{padding:0 12px}.btn{padding:9px 14px;font-size:12px}.gl{grid-template-columns:1fr}.match-cols{grid-template-columns:1fr;gap:16px}.match-mid{flex-direction:row;gap:4px}}
@@ -200,7 +200,7 @@ body.light .pipe-s{color:var(--t)}
 </head>
 <body>
 <div class="app">
-<div class="top"><div class="top-l"><div class="brand"><img src="https://refindable.com/wp-content/uploads/2022/05/Refindable-white.png" alt="Refindable" style="height:20px;vertical-align:middle;margin-right:6px"><span style="color:var(--tm)">Academy</span></div><div class="top-sep"></div><div class="top-info">Sesión 1 · Trainees</div></div><div class="top-r"><div class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</div><div class="score-badge" id="scoreBadge">✨ 0 pts</div><div class="pg-text" id="pgText">1 / 25</div></div></div>
+<div class="top"><div class="top-l"><div class="brand"><img src="https://refindable.com/wp-content/uploads/2022/05/Refindable-white.png" alt="Refindable" style="height:20px;vertical-align:middle;margin-right:6px"><span style="color:var(--tm)">Academy</span></div><div class="top-sep"></div><div class="top-info">Sesión 1 · Trainees</div></div><div class="top-r"><div class="theme-toggle" onclick="toggleLang()" id="langBtn" title="Switch language">🌐 EN</div><div class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</div><div class="score-badge" id="scoreBadge">✨ 0 pts</div><div class="pg-text" id="pgText">1 / 25</div></div></div>
 <div class="pg-track"><div class="pg-fill" id="pgFill"></div></div>
 <div class="sa">
 
@@ -716,6 +716,42 @@ function toggleTheme(){
 }
 // Load saved theme
 if(localStorage.getItem('theme')==='light'){document.body.classList.add('light');document.getElementById('themeBtn').textContent='☀️'}
+
+// Language toggle
+var currentLang='es';
+var TR={"SESIÓN 1 — 14 MARZO 2026": "SESSION 1 — MARCH 14, 2026", "01 · Fundamentos": "01 · Fundamentals", "00 · Contexto": "00 · Context", "02 · Impacto": "02 · Impact", "03 · Estructura": "03 · Structure", "05 · Navegación": "05 · Navigation", "06 · Conceptos clave": "06 · Key Concepts", "📖 Referencia": "📖 Reference", "🎉 Fin de la sesión": "🎉 End of Session", "¿Qué es un CRM?": "What is a CRM?", "+ Navegación HubSpot": "+ HubSpot Navigation", "Todo lo que necesitás saber para entender el CRM, por qué importa, y cómo moverte en HubSpot sin perderte.": "Everything you need to know about CRM, why it matters, and how to navigate HubSpot.", "🧠 3 quizzes + 2 ejercicios + 3 escenarios": "🧠 3 quizzes + 2 exercises + 3 scenarios", "Breve historia del CRM": "Brief History of CRM", "Los CRMs no siempre existieron. Antes de la tecnología, las empresas gestionaban clientes con rolodex, carpetas y memoria.": "CRMs did not always exist. Before technology, companies managed clients with rolodexes, folders, and memory.", "📇 1980s — El Rolodex y las planillas": "📇 1980s — The Rolodex and Spreadsheets", "Las empresas manejaban contactos en tarjeteros físicos y hojas de cálculo. Todo era manual.": "Companies managed contacts in physical card files and spreadsheets. Everything was manual.", "💾 1993 — Nace Siebel Systems": "💾 1993 — Siebel Systems is Born", "Uno de los primeros CRMs digitales. Caro, complejo, solo para grandes empresas. Pero revolucionó la gestión de ventas.": "One of the first digital CRMs. Expensive, complex, enterprise-only. But it revolutionized sales management.", "☁️ 1999 — Salesforce cambia todo": "☁️ 1999 — Salesforce Changes Everything", "lanza el primer CRM 100% en la nube. No más instalaciones en servidores. Accedés desde cualquier lugar.": "launches the first 100% cloud CRM. No more server installations. Access from anywhere.", "📱 2006 — HubSpot y la era Inbound": "📱 2006 — HubSpot and the Inbound Era", "nace con una idea diferente: en vez de perseguir clientes,": "is born with a different idea: instead of chasing clients,", "atraelos con contenido": "attract them with content", ". CRM gratuito + marketing + ventas en uno.": ". Free CRM + marketing + sales in one.", "🤖 2020s — CRM + Inteligencia Artificial": "🤖 2020s — CRM + Artificial Intelligence", "Los CRMs modernos integran": "Modern CRMs integrate", "IA para predecir ventas": "AI to predict sales", ", automatizar tareas, y personalizar la experiencia del cliente.": ", automate tasks, and personalize the customer experience.", "Los CRMs más usados del mundo": "Most Used CRMs in the World", "Hay muchos CRMs en el mercado. Cada uno tiene un enfoque diferente. Estos son los principales:": "There are many CRMs in the market. Each one has a different focus. These are the main ones:", "El más grande del mundo. Enterprise, complejo, caro.": "The largest in the world. Enterprise, complex, expensive.", "El que usamos. CRM gratis, fácil, todo-en-uno.": "The one we use. Free CRM, easy, all-in-one.", "Se integra con Office 365. Ideal para empresas Microsoft.": "Integrates with Office 365. Ideal for Microsoft companies.", "Económico, versátil. Muy popular en PyMEs.": "Affordable, versatile. Very popular with SMBs.", "Simple, enfocado 100% en ventas y pipeline.": "Simple, 100% focused on sales and pipeline.", "Visual, flexible. Viene del project management.": "Visual, flexible. Comes from project management.", "Porque el CRM base es gratis, tiene todo integrado (marketing + ventas + service), es fácil de usar, y tiene la mejor comunidad de soporte. Por eso Refindable lo eligió.": "Because the base CRM is free, has everything integrated (marketing + sales + service), is easy to use, and has the best support community. That is why Refindable chose it.", "Antes vs. Después": "Before vs. After", "❌ Sin CRM": "❌ Without CRM", "✅ Con CRM": "✅ With CRM", "Contactos en planillas separadas": "Contacts in separate spreadsheets", "No sabés quién habló con quién": "No one knows who talked to whom", "Se pierden oportunidades": "Opportunities get lost", "Reportes manuales": "Manual reports", "Cada persona trabaja diferente": "Everyone works differently", "Base de datos centralizada": "Centralized database", "Timeline de interacciones": "Interaction timeline", "Pipeline visual": "Visual pipeline", "Dashboards en tiempo real": "Real-time dashboards", "Procesos estandarizados": "Standardized processes", "Los números que importan": "The Numbers That Matter", "Las empresas que usan CRM correctamente ven mejoras concretas:": "Companies that use CRM correctly see concrete improvements:", "Ventas": "Sales", "Pronósticos": "Forecasts", "Productividad": "Productivity", "Retención clientes": "Client Retention", "Los objetos del CRM": "CRM Objects", "Todo CRM organiza la información en": "Every CRM organizes information into", "objetos": "objects", ". Hacé clic en cada uno:": ". Click on each one:", "👤 Contactos": "👤 Contacts", "🏢 Empresas (Companies)": "🏢 Companies", "💰 Negocios (Deals)": "💰 Deals", "🎫 Tickets": "🎫 Tickets", "📋 Actividades": "📋 Activities", "Cómo se conectan los objetos": "How Objects Connect", "¿Qué es un Pipeline?": "What is a Pipeline?", "Los Hubs": "The Hubs", "Navegación en HubSpot": "HubSpot Navigation", "Hacé clic en cada menú para ver qué hay adentro:": "Click each menu to see what is inside:", "5 acciones que van a usar todos los días": "5 Actions You Will Use Every Day", "Lifecycle Stages": "Lifecycle Stages", "Properties (Propiedades)": "Properties", "Glosario rápido": "Quick Glossary", "Para tener a mano. No hace falta memorizar todo, pero saber dónde buscar.": "Keep this handy. No need to memorize everything, just know where to look.", "Tu resultado": "Your Result", "Sesión 1 · Trainees": "Session 1 · Trainees", "← Anterior": "← Previous", "Siguiente →": "Next →", "🔒 Completá para avanzar": "🔒 Complete to continue", "Ver resultado →": "See results →", "🧠 Quiz 1 — Respondé para avanzar": "🧠 Quiz 1 — Answer to continue", "🧠 Quiz 2 — Pilares del CRM": "🧠 Quiz 2 — CRM Pillars", "🧠 Quiz Final": "🧠 Final Quiz", "Fundamentos del CRM": "CRM Fundamentals", "Verificación rápida": "Quick Check", "Últimas preguntas": "Final Questions", "Pregunta 1": "Question 1", "Pregunta 2": "Question 2", "Pregunta 3": "Question 3", "¿Qué significa CRM?": "What does CRM stand for?", "¿Qué pasa con un CRM mal implementado?": "What happens with a poorly implemented CRM?", "Funciona igual, solo más lento": "Works the same, just slower", "Es peor que no tener CRM": "It is worse than having no CRM", "Se arregla solo con el tiempo": "It fixes itself over time", "¿Cuál es el identificador más común de un Contacto?": "What is the most common Contact identifier?", "Nombre completo": "Full name", "Número de teléfono": "Phone number", "El proceso por etapas de una venta": "The step-by-step sales process", "¿Qué tienen en común todos los Hubs de HubSpot?": "What do all HubSpot Hubs have in common?", "Son sistemas separados": "They are separate systems", "La misma base de datos (CRM)": "The same database (CRM)", "Cada Hub necesita cuenta diferente": "Each Hub needs a different account", "¿Cuál es la diferencia entre Lifecycle Stage y Pipeline?": "What is the difference between Lifecycle Stage and Pipeline?", "Lifecycle = etapa del contacto. Pipeline = etapa del deal.": "Lifecycle = contact stage. Pipeline = deal stage.", "Son lo mismo con nombres diferentes": "They are the same with different names", "Lifecycle es para marketing, Pipeline para service": "Lifecycle is for marketing, Pipeline for service", "¿Dónde encontrás Workflows en HubSpot?": "Where do you find Workflows in HubSpot?", "🎯 Ejercicio — Conectá los conceptos": "🎯 Exercise — Match the concepts", "¿Qué objeto es cada cosa?": "What object is each thing?", "Hacé clic en un item de la izquierda y después en su match de la derecha:": "Click an item on the left and then its match on the right:", "Problema con la facturación": "Billing problem", "Llamada de 15 min con cliente": "15 min call with client", "🎫 Ticket": "🎫 Ticket", "👤 Contacto": "👤 Contact", "📋 Actividad": "📋 Activity", "💰 Deal": "💰 Deal", "🏢 Company": "🏢 Company", "🎬 Escenario — ¿Qué harías?": "🎬 Scenario — What would you do?", "Caso práctico #1": "Practical Case #1", "Caso práctico #2": "Practical Case #2", "🎬 Escenario final": "🎬 Final Scenario", "Caso práctico #3": "Practical Case #3"};
+var originals=[];
+
+function toggleLang(){
+  currentLang=currentLang==='es'?'en':'es';
+  document.getElementById('langBtn').textContent=currentLang==='es'?'\u{1F310} EN':'\u{1F310} ES';
+  applyLang();
+}
+
+function applyLang(){
+  if(currentLang==='en'){
+    originals=[];
+    var all=document.querySelectorAll('.app *:not(script):not(style)');
+    for(var i=0;i<all.length;i++){
+      for(var j=0;j<all[i].childNodes.length;j++){
+        var n=all[i].childNodes[j];
+        if(n.nodeType===3){
+          var t=n.textContent.trim();
+          if(TR[t]){
+            originals.push({node:n,orig:n.textContent});
+            n.textContent=n.textContent.replace(t,TR[t]);
+          }
+        }
+      }
+    }
+  } else {
+    for(var k=0;k<originals.length;k++){
+      originals[k].node.textContent=originals[k].orig;
+    }
+    originals=[];
+  }
+}
+
 upd();
 </script>
 </body>
