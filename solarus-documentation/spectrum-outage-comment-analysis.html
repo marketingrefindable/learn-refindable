@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Spectrum Complaint Thread — Data Mining</title>
+<style>
+  :root{
+    --paper:#EFF1EC;
+    --paper-raised:#FFFFFF;
+    --ink:#1B2430;
+    --ink-soft:#5B6472;
+    --line:#D6D9D1;
+    --accent:#C1440E;
+    --accent-soft:#C1440E14;
+    --sev-critical:#A6301F;
+    --sev-warn:#B8860B;
+    --sev-ok:#2E6F53;
+    --navy:#1F2A3A;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    line-height:1.5;
+    max-width:880px;
+    margin:0 auto;
+    padding:48px 24px 80px;
+  }
+  h1,h2,h3{
+    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+    font-weight:400;
+    text-wrap:balance;
+    color:var(--ink);
+    margin:0;
+  }
+  .mono{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+    font-variant-numeric:tabular-nums;
+  }
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin:0 0 6px;
+  }
+  header.masthead{
+    border-bottom:2px solid var(--ink);
+    padding-bottom:28px;
+    margin-bottom:32px;
+  }
+  header.masthead h1{
+    font-size:34px;
+    line-height:1.15;
+  }
+  header.masthead .sub{
+    color:var(--ink-soft);
+    font-size:15px;
+    margin-top:10px;
+    max-width:640px;
+  }
+  .statrow{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-top:28px;
+  }
+  .stat{
+    background:var(--paper-raised);
+    padding:16px 14px;
+  }
+  .stat .num{
+    font-size:26px;
+    font-weight:600;
+    letter-spacing:-.01em;
+  }
+  .stat .label{
+    font-size:11.5px;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    margin-top:4px;
+  }
+  section{margin-top:44px;}
+  section > h2{
+    font-size:21px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:10px;
+    margin-bottom:16px;
+  }
+  p.lede{color:var(--ink-soft); font-size:14.5px; max-width:640px;}
+
+  .callout{
+    background:var(--accent-soft);
+    border-left:3px solid var(--accent);
+    padding:16px 18px;
+    font-size:14.5px;
+    color:var(--ink);
+  }
+  .callout strong{color:var(--accent);}
+
+  /* monthly bar chart */
+  .chart{display:flex; flex-direction:column; gap:9px; margin-top:18px;}
+  .barrow{display:grid; grid-template-columns:76px 1fr 48px; align-items:center; gap:10px;}
+  .barrow .m{font-size:12.5px; color:var(--ink-soft);}
+  .barrow .track{background:var(--line); height:16px; position:relative; overflow:hidden;}
+  .barrow .fill{background:var(--navy); height:100%;}
+  .barrow.current .fill{background:var(--accent);}
+  .barrow .n{font-size:12.5px; text-align:right; color:var(--ink-soft);}
+  .chart-note{font-size:12px; color:var(--ink-soft); margin-top:10px; font-style:italic;}
+
+  /* issue type stacked bar */
+  .stack{display:flex; height:28px; width:100%; border:1px solid var(--line);}
+  .stack div{height:100%;}
+  .legend{display:flex; flex-wrap:wrap; gap:16px; margin-top:12px; font-size:13px;}
+  .legend .sw{display:inline-flex; align-items:center; gap:6px;}
+  .legend .sw i{width:10px; height:10px; display:inline-block;}
+
+  table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  .tablewrap{overflow-x:auto;}
+  th,td{text-align:left; padding:9px 10px; border-bottom:1px solid var(--line);}
+  th{font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-soft); font-weight:600;}
+  td.n, th.n{text-align:right;}
+
+  .theme-list{display:flex; flex-direction:column; gap:16px;}
+  .theme{padding:14px 16px; background:var(--paper-raised); border:1px solid var(--line);}
+  .theme .t-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px;}
+  .theme .t-title{font-weight:600; font-size:14.5px;}
+  .theme .t-count{font-size:11.5px; color:var(--ink-soft);}
+  .theme blockquote{
+    margin:8px 0 0;
+    padding-left:12px;
+    border-left:2px solid var(--line);
+    font-size:13px;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+  .theme blockquote cite{display:block; font-style:normal; font-size:11.5px; margin-top:3px; color:var(--ink-soft);}
+
+  .pill{display:inline-block; font-size:10.5px; padding:2px 7px; border-radius:2px; text-transform:uppercase; letter-spacing:.03em; font-weight:600;}
+  .pill.crit{background:#A6301F1A; color:var(--sev-critical);}
+  .pill.warn{background:#B8860B1A; color:var(--sev-warn);}
+  .pill.ok{background:#2E6F531A; color:var(--sev-ok);}
+
+  .flagbox{
+    border:1px solid var(--sev-critical);
+    background:#A6301F0D;
+    padding:14px 16px;
+    font-size:13.5px;
+  }
+  .flagbox .t-title{color:var(--sev-critical); font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.04em;}
+
+  footer{
+    margin-top:56px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <p class="eyebrow">Data mining note</p>
+  <h1>What ~290 comments on a Spectrum outage board actually say</h1>
+  <p class="sub">Source: the community comment thread attached to <span class="mono">istheservicedown.com</span>'s "Plover, Wisconsin" Spectrum status page. Read from the pasted transcript and screenshots provided, spanning roughly Nov 2025 – Jun 2026.</p>
+  <div class="statrow">
+    <div class="stat"><div class="num mono">~290</div><div class="label">Comments reviewed</div></div>
+    <div class="stat"><div class="num mono">~8 mo</div><div class="label">Time span covered</div></div>
+    <div class="stat"><div class="num mono">&lt;2%</div><div class="label">Mention Wisconsin</div></div>
+    <div class="stat"><div class="num mono">65%+</div><div class="label">About internet specifically</div></div>
+  </div>
+</header>
+
+<section>
+  <div class="callout">
+    <strong>This isn't a Plover outage log — it's a national Spectrum gripe board.</strong>
+    Only five comments in the whole set mention Wisconsin at all (Mukwonago, La Crosse/UWL, Milwaukee, Keshena, Stratford). Everything else is a resident of some other Spectrum/Charter footprint state — CA, NY, OH, TX, FL, NC, MT, MI, and more — posting on a generic comment widget that this site attaches to every city page it hosts. Treat this as a sample of nationwide Spectrum sentiment, not a Plover-specific signal.
+  </div>
+</section>
+
+<section>
+  <h2>Volume over time</h2>
+  <p class="lede">Comments carry relative timestamps ("3 days ago," "a month ago"), converted here to calendar months against a Jul 1, 2026 read date. Counts are hand-tallied from the transcript, so treat them as approximate — buckets, not a precise time series.</p>
+  <div class="chart">
+    <div class="barrow"><div class="m">Nov '25</div><div class="track"><div class="fill" style="width:54%"></div></div><div class="n mono">27</div></div>
+    <div class="barrow"><div class="m">Dec '25</div><div class="track"><div class="fill" style="width:42%"></div></div><div class="n mono">21</div></div>
+    <div class="barrow"><div class="m">Jan '26</div><div class="track"><div class="fill" style="width:100%"></div></div><div class="n mono">50</div></div>
+    <div class="barrow"><div class="m">Feb '26</div><div class="track"><div class="fill" style="width:70%"></div></div><div class="n mono">35</div></div>
+    <div class="barrow"><div class="m">Mar '26</div><div class="track"><div class="fill" style="width:80%"></div></div><div class="n mono">40</div></div>
+    <div class="barrow"><div class="m">Apr '26</div><div class="track"><div class="fill" style="width:100%"></div></div><div class="n mono">50</div></div>
+    <div class="barrow"><div class="m">May '26</div><div class="track"><div class="fill" style="width:80%"></div></div><div class="n mono">40</div></div>
+    <div class="barrow current"><div class="m">Jun '26<br><span style="font-size:10.5px">(partial)</span></div><div class="track"><div class="fill" style="width:44%"></div></div><div class="n mono">22</div></div>
+  </div>
+  <p class="chart-note">No single spike — steady 20–50 complaints/month for eight straight months reads as chronic dissatisfaction rather than one dramatic incident.</p>
+</section>
+
+<section>
+  <h2>What kind of service is failing</h2>
+  <div class="stack">
+    <div style="width:65%; background:var(--navy);"></div>
+    <div style="width:15%; background:#5B7A8C;"></div>
+    <div style="width:12%; background:#9AA5AE;"></div>
+    <div style="width:3%; background:#C7CDD1;"></div>
+    <div style="width:5%; background:var(--accent);"></div>
+  </div>
+  <div class="legend">
+    <span class="sw"><i style="background:var(--navy);"></i>Internet — 65%</span>
+    <span class="sw"><i style="background:#5B7A8C;"></i>TV / cable — 15%</span>
+    <span class="sw"><i style="background:#9AA5AE;"></i>Phone / cell — 12%</span>
+    <span class="sw"><i style="background:#C7CDD1;"></i>Email / webmail — 3%</span>
+    <span class="sw"><i style="background:var(--accent);"></i>General (billing, no service type named) — 5%</span>
+  </div>
+</section>
+
+<section>
+  <h2>Recurring themes</h2>
+  <div class="theme-list">
+    <div class="theme">
+      <div class="t-head"><span class="t-title">"Flapping" — short repeated drops, not a hard outage</span><span class="t-count pill crit">most-cited technical pattern</span></div>
+      <p style="font-size:13.5px; margin:8px 0 0;">Connection cuts for 20–30 seconds every 15–30 minutes, all day, for weeks. One commenter (Butte, MT) posted about this same pattern roughly eight separate times across two months.</p>
+      <blockquote>"I found this is called flapping. They cut your internet for 20 to 30 seconds every 20 minutes... I am not paying for this anymore."<cite>— Jean Renouard, Butte MT, repeated across ~8 comments</cite></blockquote>
+    </div>
+    <div class="theme">
+      <div class="t-head"><span class="t-title">Outage map contradicts lived experience</span><span class="t-count pill warn">credibility gap</span></div>
+      <p style="font-size:13.5px; margin:8px 0 0;">Multiple independent commenters, in different states, report a real local outage while the site/Spectrum's own map shows zero problems — the same gap visible in the Plover screenshot you shared (0 signals, 0 direct reports, yet three recent city reports below it).</p>
+      <blockquote>"NC isn't showing an outage on the map... They couldn't give me an estimated restoration time either."<cite>— Annie Oakley / Bryan Goddard thread</cite></blockquote>
+    </div>
+    <div class="theme">
+      <div class="t-head"><span class="t-title">No credit or compensation for downtime</span><span class="t-count pill warn">billing friction</span></div>
+      <p style="font-size:13.5px; margin:8px 0 0;">Recurs independently in at least 6 threads — commenters doing their own math on hours lost vs. monthly bill and asking, rhetorically or directly, for a refund.</p>
+      <blockquote>"This month 400 hours down. So that's 4800 hours per year... Should most Subscribers do the Same?"<cite>— Dale L Sursely, El Paso 79936, x3 comments</cite></blockquote>
+    </div>
+    <div class="theme">
+      <div class="t-head"><span class="t-title">"No other option" — monopoly framing</span><span class="t-count pill warn">structural complaint</span></div>
+      <p style="font-size:13.5px; margin:8px 0 0;">Distinct from generic anger: several commenters specifically frame the issue as captive-market, citing lack of fiber/AT&T/Verizon competition in their area as the reason they tolerate it.</p>
+      <blockquote>"The worst part is this spectrum company has a monopoly on the internet in my area and I can't even switch to Verizon."<cite>— Joe Chain</cite></blockquote>
+    </div>
+    <div class="theme">
+      <div class="t-head"><span class="t-title">Switching intent named explicitly</span><span class="t-count pill ok">churn signal</span></div>
+      <p style="font-size:13.5px; margin:8px 0 0;">Named alternatives, in order of frequency mentioned: <strong>Starlink</strong>, <strong>T-Mobile Home Internet</strong>, <strong>AT&amp;T</strong>, <strong>Fidium Fiber</strong>, <strong>Verizon Fios</strong>, <strong>Xfinity</strong>. Fidium and Starlink mentions specifically cite better reliability, not just price.</p>
+    </div>
+    <div class="theme">
+      <div class="t-head"><span class="t-title">Weather blamed, often disbelieved</span><span class="t-count pill ok">trust issue</span></div>
+      <p style="font-size:13.5px; margin:8px 0 0;">Spectrum reps reportedly cite storms/weather even on clear days; one rep is quoted blaming "the war." Commenters increasingly push back rather than accept the explanation.</p>
+      <blockquote>"How come Spectrum say it's because of the weather when it's hardly even raining outside... how come wire 3 doesn't have a problem?"<cite>— Shirley Dacenzo</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Where complaints cluster</h2>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>State / region</th><th>Representative cities named</th><th class="n">Approx. mentions</th></tr></thead>
+      <tbody>
+        <tr><td>California</td><td>South Pasadena, Murrieta, Red Bluff, North Hollywood, Bakersfield, N. El Monte, Sierra Madre</td><td class="n mono">~18</td></tr>
+        <tr><td>New York</td><td>Troy, Herkimer, Kingston/Rhinebeck, Niagara Falls, Macedon, Albany</td><td class="n mono">~16</td></tr>
+        <tr><td>Ohio</td><td>Robertsville, Dayton/Miamisburg, Columbus, New Albany, Hartville</td><td class="n mono">~15</td></tr>
+        <tr><td>Texas</td><td>Frisco, Fort Worth, Carrollton, Rio Grande City, Dallas</td><td class="n mono">~14</td></tr>
+        <tr><td>Florida</td><td>Kissimmee, Ocoee, Cape Canaveral, Merritt Island, Casselberry</td><td class="n mono">~14</td></tr>
+        <tr><td>North Carolina</td><td>Canton, Chapel Hill, Kannapolis, Shelby, Wilkesboro</td><td class="n mono">~10</td></tr>
+        <tr><td>Montana</td><td>Butte (single repeat commenter), Columbus, Missoula</td><td class="n mono">~9</td></tr>
+        <tr><td style="color:var(--accent); font-weight:600;">Wisconsin</td><td>Mukwonago, La Crosse (UWL), Milwaukee, Keshena, Stratford</td><td class="n mono" style="color:var(--accent); font-weight:600;">5</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Most persistent individual commenters</h2>
+  <p class="lede">A handful of accounts account for a disproportionate share of volume — useful to know since raw comment counts overstate how many distinct households are affected.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Commenter</th><th>Location</th><th class="n">Posts</th><th>Pattern</th></tr></thead>
+      <tbody>
+        <tr><td>Jean Renouard</td><td>Butte, MT</td><td class="n mono">~8</td><td>Chronic "flapping," 20+ yr customer, threatens to leave</td></tr>
+        <tr><td>Jeff Galusha</td><td>Herkimer, NY</td><td class="n mono">4</td><td>In/out over several days, no ETA given</td></tr>
+        <tr><td>Brooks</td><td>Robertsville, OH</td><td class="n mono">4</td><td>Multi-day outage, repeated status checks</td></tr>
+        <tr><td>Dale L Sursely</td><td>El Paso, TX (79936)</td><td class="n mono">3</td><td>Demanding bill credit for downtime</td></tr>
+        <tr><td>Anthony Bacher</td><td>28150, NC</td><td class="n mono">3</td><td>Same short "internet outage" post, low detail</td></tr>
+        <tr><td>Tabe Cole</td><td>unspecified</td><td class="n mono">3</td><td>Low-content ("spectrum blows"), duplicate posts</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Worth flagging</h2>
+  <div class="flagbox">
+    <p class="t-title">Possible scam / injected content in the thread</p>
+    <p style="margin:8px 0 0;">The site's own comment guidelines warn: <em>"Beware of 'support numbers' or 'recovery' accounts that might be posted below."</em> One comment in the set (Eric Michael Schmidt, zip 32792) separately describes suspicious "FBI One3" pop-ups appearing during an internet outage — unrelated to Spectrum but worth noting as the kind of thing that shows up in unmoderated outage-comment sections. No actual fake-support-number comment was found in the transcript provided, but the site's own warning plus that one report is reason to treat any phone number or "click here to fix" text in this thread as untrusted if you go read the live page yourself.</p>
+  </div>
+</section>
+
+<footer>
+  Methodology: hand-coded from the comment transcript and screenshots supplied in this conversation — no scraping or automated extraction was run (Disqus loads the thread client-side and wasn't reachable through page-text extraction). Counts, percentages, and monthly buckets are approximate manual tallies, not exact. Profanity in source quotes lightly retained where it signals intensity; a few comments were redacted by the source site itself (shown as "****" in the original).
+</footer>
+
+</body>
+</html>
