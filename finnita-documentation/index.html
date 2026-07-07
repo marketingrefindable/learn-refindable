@@ -57,6 +57,10 @@ nav .ll{font-family:'Bebas Neue',sans-serif;font-size:.85em;color:var(--o);lette
 .flow-s{background:var(--ol);border:1px solid var(--ob);border-radius:6px;padding:6px 11px;font-size:.75em;font-weight:600;color:var(--t)}.flow-s.active{background:var(--o);color:#fff;border-color:var(--o)}.flow-s.warn{background:rgba(243,156,18,.1);border-color:var(--y);color:var(--y)}
 .flow-arr{color:var(--o);font-size:1em;font-weight:700}
 footer{text-align:center;padding:32px 24px 24px;color:var(--tl);font-size:.72em;border-top:1px solid var(--bd);max-width:860px;margin:0 auto}footer span{color:var(--o);font-weight:700}
+details.vw{background:#fff;border:1px solid var(--bd);border-radius:8px;padding:11px 15px;margin:14px 0}details.vw[open]{padding-bottom:15px}
+details.vw summary{cursor:pointer;list-style:none;font-weight:700;font-size:.85em;color:var(--o);display:flex;align-items:center;gap:8px}details.vw summary::-webkit-details-marker{display:none}
+details.vw summary::before{content:"\25B6";font-size:.72em}details.vw[open] summary::before{content:"\25BC"}
+details.vw .vwbox{position:relative;padding-bottom:56.25%;height:0;margin:12px 0 0}details.vw .vwbox iframe{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:10px}
 @media(max-width:768px){nav{padding:12px 16px}.nl{display:none}.hero{padding:96px 18px 40px;min-height:34vh}.toc{margin:-24px 12px 30px;padding:18px 16px}.toc-g{grid-template-columns:1fr}.ct{padding:0 12px 50px}.sh{margin:40px 0 8px}.st-b{padding-left:0}.dt{font-size:.75em}.flow-steps{gap:3px}.flow-s{font-size:.68em;padding:5px 8px}}
 </style>
 </head>
@@ -322,8 +326,9 @@ footer{text-align:center;padding:32px 24px 24px;color:var(--tl);font-size:.72em;
 <li>Click <strong>Calendar → Connect Calendar</strong></li>
 <li>Choose <strong>Google</strong> or <strong>Microsoft</strong> and sign in with your work account</li>
 </ul>
-<p class="desc">Watch it done end-to-end:</p>
-<div style="position:relative;padding-bottom:56.25%;height:0;margin:1.5rem 0"><iframe src="https://www.loom.com/embed/03db51306c0a47399ea10de06aa240e1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe></div>
+<details class="vw"><summary>Watch: connect your calendar</summary>
+<div class="vwbox"><iframe src="https://www.loom.com/embed/03db51306c0a47399ea10de06aa240e1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+</details>
 <img src="img/meeting-1.jpg" alt="HubSpot Calendar settings with the Connect your calendar button" style="width:100%;display:block;margin-left:auto;margin-right:auto;border-radius:8px;border:1px solid var(--bd);margin:10px 0">
 <div class="co co-d"><div class="tg">Done when</div><p>You see your calendar listed with a green status.</p></div>
 </div></div>
@@ -336,6 +341,9 @@ footer{text-align:center;padding:32px 24px 24px;color:var(--tl);font-size:.72em;
 <li>Fill in: <strong>name</strong> (e.g. "Finnita Intro Call"), <strong>duration</strong>, and <strong>buffer time</strong></li>
 <li>Click <strong>Next</strong>, set your available days and hours, then <strong>Save</strong></li>
 </ul>
+<details class="vw"><summary>Watch: create &amp; copy your meeting link</summary>
+<div class="vwbox"><iframe src="https://www.loom.com/embed/48648a839f7f47fca8e843171f0fe49c" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+</details>
 <img src="img/meeting-2.jpg" alt="HubSpot Meetings tool - scheduling page list" style="width:100%;display:block;margin-left:auto;margin-right:auto;border-radius:8px;border:1px solid var(--bd);margin:10px 0">
 </div></div>
 
