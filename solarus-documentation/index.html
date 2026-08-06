@@ -78,6 +78,18 @@ footer{text-align:center;padding:32px 24px 24px;color:var(--tl);font-size:.72em;
 .note-box{background:rgba(52,152,219,.07);border-left:4px solid var(--b);border-radius:8px;padding:12px 16px;margin:14px 0;font-size:.85em;line-height:1.6;color:var(--t)}
 .warning-box{background:rgba(231,76,60,.07);border-left:4px solid var(--r);border-radius:8px;padding:12px 16px;margin:14px 0;font-size:.85em;line-height:1.6;color:var(--t)}
 .section-divider{border:none;border-top:2px solid var(--bd);margin:32px 0}
+.tbl-wrap{overflow-x:auto;margin:14px 0;border:1px solid var(--bd);border-radius:10px;background:#fff}
+.tbl{width:100%;border-collapse:collapse;font-size:.85em;font-variant-numeric:tabular-nums}
+.tbl th{text-align:left;font-family:'Bebas Neue',sans-serif;letter-spacing:1.5px;font-size:1.05em;color:var(--o);padding:12px 16px;border-bottom:2px solid var(--bd);white-space:nowrap}
+.tbl th.num,.tbl td.num{text-align:right;white-space:nowrap}
+.tbl td{padding:11px 16px;border-bottom:1px solid var(--bd);color:var(--tl);vertical-align:top;line-height:1.5}
+.tbl tbody tr:last-child td{border-bottom:none}
+.tbl tbody tr{transition:background .15s}.tbl tbody tr:hover{background:var(--ol)}
+.tbl td strong{color:var(--t);font-weight:600}
+.tbl td.pts{font-weight:700;color:var(--t)}.tbl td.pts-n{color:var(--r)}
+.tbl caption{caption-side:top;text-align:left;padding:12px 16px 0;font-size:.9em;color:var(--tl)}
+.shot{margin:14px 0}.shot img{display:block;width:100%;border-radius:6px;border:1px solid var(--bd)}
+.shot figcaption{font-size:.8em;color:var(--tl);margin-top:7px;line-height:1.5}
 </style>
 </head>
 <body>
@@ -90,7 +102,7 @@ footer{text-align:center;padding:32px 24px 24px;color:var(--tl);font-size:.72em;
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
 <input type="text" id="searchInput" placeholder="Search sections..." oninput="searchPage(this.value)">
 </div>
-<ul class="nl"><li><a href="#sales">Sales</a></li><li><a href="#quoting">Quoting</a></li><li><a href="#workspace">Workspace</a></li><li><a href="#calling">3CX</a></li><li><a href="#emails">Emails</a></li><li><a href="#contacts">Contacts</a></li><li><a href="#links">Links</a></li></ul>
+<ul class="nl"><li><a href="#sales">Sales</a></li><li><a href="#quoting">Quoting</a></li><li><a href="#workspace">Workspace</a></li><li><a href="#calling">3CX</a></li><li><a href="#emails">Emails</a></li><li><a href="#contacts">Contacts</a></li><li><a href="#scoring">Scoring</a></li><li><a href="#goals">Goals</a></li><li><a href="#links">Links</a></li></ul>
 </nav>
 
 <div class="hero"><div class="hero-bg"></div><div class="hero-grid"></div>
@@ -106,7 +118,9 @@ footer{text-align:center;padding:32px 24px 24px;color:var(--tl);font-size:.72em;
 <a href="#calling" class="toc-i"><span class="toc-n">IV</span><span class="toc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.34 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.36 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><span class="toc-l">3CX Calling</span></a>
 <a href="#emails" class="toc-i"><span class="toc-n">V</span><span class="toc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span><span class="toc-l">Emails &amp; Templates</span></a>
 <a href="#contacts" class="toc-i"><span class="toc-n">VI</span><span class="toc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg></span><span class="toc-l">Create Contacts &amp; Leads</span></a>
-<a href="#links" class="toc-i"><span class="toc-n">VII</span><span class="toc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span><span class="toc-l">Useful HubSpot Links</span></a>
+<a href="#scoring" class="toc-i"><span class="toc-n">VII</span><span class="toc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m7 15 3.5-4.5 3 2.5L20 6"/></svg></span><span class="toc-l">Lead Scoring</span></a>
+<a href="#goals" class="toc-i"><span class="toc-n">VIII</span><span class="toc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><span class="toc-l">Goals &amp; Targets</span></a>
+<a href="#links" class="toc-i"><span class="toc-n">IX</span><span class="toc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span><span class="toc-l">Useful HubSpot Links</span></a>
 </div></div>
 
 <div class="ct">
@@ -119,8 +133,8 @@ footer{text-align:center;padding:32px 24px 24px;color:var(--tl);font-size:.72em;
 <p class="desc">When a new lead is created, the system notifies the CSR team. After manual assignment, the sales rep receives a task and email notification. Automated follow-ups escalate if the lead goes inactive.</p></div>
 
 <div class="timeline">
-<div class="tl-step"><div class="tl-dot"></div><div class="tl-card"><p class="tl-num">Step 1</p><p class="tl-text">Lead is created — automated notification sent to <strong>sales@solarus.net</strong> to alert CSRs</p></div></div>
-<div class="tl-step"><div class="tl-dot"></div><div class="tl-card"><p class="tl-num">Step 2</p><p class="tl-text">CSR assigns the lead to a sales rep</p><p class="tl-label">Manually — rep receives email notification + HubSpot task</p></div></div>
+<div class="tl-step"><div class="tl-dot"></div><div class="tl-card"><p class="tl-num">Step 1</p><p class="tl-text">Lead is created. An automated notification goes to <strong>sales@solarus.net</strong> to alert CSRs</p></div></div>
+<div class="tl-step"><div class="tl-dot"></div><div class="tl-card"><p class="tl-num">Step 2</p><p class="tl-text">CSR assigns the lead to a sales rep</p><p class="tl-label">Manually. The rep receives an email notification and a HubSpot task</p></div></div>
 <div class="tl-step"><div class="tl-dot"></div><div class="tl-card"><p class="tl-num">Step 3</p><p class="tl-text">If <strong>48 hours</strong> pass with no activity (note, call, or email): automated reminder email sent to the sales rep to update the lead</p></div></div>
 <div class="tl-step"><div class="tl-dot"></div><div class="tl-card"><p class="tl-num">Step 4</p><p class="tl-text">If still no activity after <strong>72 hours</strong>: automated email sent to CSR to re-assign the lead</p><p class="tl-label">CSR re-assigns manually or contacts the rep</p></div></div>
 </div>
@@ -133,7 +147,7 @@ footer{text-align:center;padding:32px 24px 24px;color:var(--tl);font-size:.72em;
 <p class="desc">After a quote is sent to a customer, the system creates tasks and sends notifications at key intervals. If the quote is not accepted within 45 days, the deal moves to closed lost automatically.</p></div>
 
 <div class="timeline">
-<div class="tl-step"><div class="tl-dot"></div><div class="tl-card"><p class="tl-num">Step 1</p><p class="tl-text">Quote is sent — if no acceptance after <strong>48 hours</strong>: a task + email assigned to sales rep to follow up</p></div></div>
+<div class="tl-step"><div class="tl-dot"></div><div class="tl-card"><p class="tl-num">Step 1</p><p class="tl-text">Quote is sent. If it is not accepted after <strong>48 hours</strong>, a task and an email are assigned to the sales rep to follow up</p></div></div>
 <div class="tl-step"><div class="tl-dot"></div><div class="tl-card"><p class="tl-num">Step 2</p><p class="tl-text"><strong>7 days</strong> after the quote was sent with no acceptance: another task and notification sent to the rep</p></div></div>
 <div class="tl-step"><div class="tl-dot"></div><div class="tl-card"><p class="tl-num">Step 3</p><p class="tl-text"><strong>30 days</strong> with no acceptance: another task and notification sent to the rep</p></div></div>
 <div class="tl-step"><div class="tl-dot"></div><div class="tl-card"><p class="tl-num">Step 4</p><p class="tl-text">At <strong>42 days</strong>: CSR team receives a notification to review the deal</p><p class="tl-label">If not moved, deal auto-closes as lost after 3 more days (day 45)</p></div></div>
@@ -143,7 +157,7 @@ footer{text-align:center;padding:32px 24px 24px;color:var(--tl);font-size:.72em;
 <hr class="section-divider">
 
 <div class="ss"><h3>How to work leads and opportunities in HubSpot</h3>
-<p class="desc">End-to-end walkthrough — from the moment a lead is assigned to you through converting it into a deal and creating a quote.</p></div>
+<p class="desc">End-to-end walkthrough, from the moment a lead is assigned to you through converting it into a deal and creating a quote.</p></div>
 
 <div class="video-embed"><iframe src="https://www.loom.com/embed/23d969ba12ac4031a6aafc02dadf7129" allowfullscreen></iframe></div>
 
@@ -259,15 +273,135 @@ footer{text-align:center;padding:32px 24px 24px;color:var(--tl);font-size:.72em;
 <div class="st"><div class="st-h"><span class="st-n">2</span><span class="st-t">Go to CRM > Contacts</span></div><div class="st-b">Click <strong>Create contact</strong>.<img src="img/Adding contact button - Creating contacts.png" alt="Create contact button"></div></div>
 <div class="st"><div class="st-h"><span class="st-n">3</span><span class="st-t">Complete the contact information</span></div><div class="st-b">Key fields:<ul><li><strong>Email</strong></li><li><strong>First name</strong></li><li><strong>Last name</strong></li><li><strong>Contact owner</strong></li><li><strong>Company name</strong></li><li><strong>Job title</strong></li><li><strong>Phone number</strong></li></ul><img src="img/Contact create card - Creating contacts.png" alt="Contact form">Contact owner fills automatically.</div></div>
 <div class="st"><div class="st-h"><span class="st-n">4</span><span class="st-t">Enable "Create lead"</span></div><div class="st-b">Select <strong>Yes</strong> on <strong>Create lead</strong> to start the sales process.<img src="img/Creating a lead from the contact card.png" alt="Creating a lead from the contact card"></div></div>
-<div class="st"><div class="st-h"><span class="st-n">5</span><span class="st-t">Create a lead from the contact layout</span></div><div class="st-b">When creating a lead from the contact layout page open, go to your <strong>left sidebar</strong>, and you will see the option to move <strong>Create lead</strong> to <strong>Yes</strong> — that will create it automatically.<img src="img/Creating a lead from the contact layout .png" alt="Creating a lead from the contact layout"></div></div>
+<div class="st"><div class="st-h"><span class="st-n">5</span><span class="st-t">Create a lead from the contact layout</span></div><div class="st-b">When creating a lead from the contact layout page open, go to your <strong>left sidebar</strong>, and you will see the option to move <strong>Create lead</strong> to <strong>Yes</strong>. That creates it automatically.<img src="img/Creating a lead from the contact layout .png" alt="Creating a lead from the contact layout"></div></div>
 <div class="st"><div class="st-h"><span class="st-n">6</span><span class="st-t">Skip marketing contact</span></div><div class="st-b">Not needed for this process.</div></div>
 <div class="st"><div class="st-h"><span class="st-n">7</span><span class="st-t">Create and open</span></div><div class="st-b">Click <strong>Create</strong>. HubSpot opens the new contact record.</div></div>
 <div class="st"><div class="st-h"><span class="st-n">8</span><span class="st-t">Lead is created automatically</span></div><div class="st-b">A <strong>lead</strong> is auto-created with the contact name and current date.</div></div>
 <div class="st"><div class="st-h"><span class="st-n">9</span><span class="st-t">Open the lead</span></div><div class="st-b">Open the lead from the contact record to begin the <a href="#sales">sales process</a>.</div></div>
 <div class="co co-w"><div class="tg">Important Notes</div>Always create the <strong>contact first</strong>. Select <strong>Create lead = Yes</strong> to start sales right away. Add as much info as possible.</div>
 
-<!-- VII. USEFUL HUBSPOT LINKS -->
-<div class="sh" id="links"><span class="nm">VII</span><h2>Useful HubSpot Links</h2></div><div class="sl"></div>
+<!-- VII. LEAD SCORING -->
+<div class="sh" id="scoring"><span class="nm">VII</span><h2>Lead Scoring</h2></div><div class="sl"></div>
+
+<div class="ss"><h3>What the score tells you</h3>
+<p class="desc">Every business contact carries a score built from two things: how well the company fits what Solarus sells, and how engaged the person has been. Fit and engagement are each capped at <strong>&minus;100 to 100</strong>, so a contact can land anywhere between <strong>&minus;200 and 200</strong>.</p></div>
+
+<div class="co co-w"><div class="tg">This model scores B2B contacts only</div>The model is named <strong>Leadscore - B2B</strong> and it is built for business contacts. Every fit rule reads from the associated <strong>company</strong> record: employee count, city and email domain. A contact with no company attached earns nothing on the fit side, so residential contacts fall outside what this model measures.</div>
+
+<div class="co co-i"><div class="tg">Why it exists</div>Instead of working the list top to bottom, the score puts the contacts most worth your time first. A 60-employee company in Wisconsin Rapids that opened your last email will always outrank a personal Gmail address in another state.</div>
+
+<div class="ss"><h3>Where you see it</h3>
+<p class="desc">The score sits on the contact record itself, in two places at once.</p></div>
+
+<div class="st"><div class="st-h"><span class="st-n">1</span><span class="st-t">The Lead Score card</span></div><div class="st-b">Open any contact. The card appears in the <strong>Overview</strong> tab and again in the <strong>right sidebar</strong>, so you do not have to go looking for it. It gives you the grade, the total, and the fit and engagement halves separately.<img src="img/lead-score-card.png" alt="Lead Score card on a HubSpot contact record showing the B3 grade, a total score of 66, and the fit and engagement split"></div></div>
+
+<div class="tbl-wrap"><table class="tbl">
+<thead><tr><th>On the card</th><th>What to read from it</th></tr></thead>
+<tbody>
+<tr><td><strong>Total score</strong></td><td>Fit plus engagement. This is the number your lists sort on.</td></tr>
+<tr><td><strong>Fit / Engagement</strong></td><td>The split tells you more than the total. Fit 66 with engagement 0 is a good company that has never responded, so treat it as a cold call. A low fit with high engagement is someone paying attention from outside the target profile.</td></tr>
+<tr><td><strong>Last 30 days</strong></td><td>How far the score moved this month. An upward arrow means something changed recently and the history is worth a look.</td></tr>
+<tr><td><strong>The grade</strong><br>B3, C1, A2</td><td>The letter is the fit tier, with <strong>A</strong> the strongest. The number is the engagement tier, with <strong>1</strong> the most engaged. A1 is the best contact you can be handed, C3 the weakest.</td></tr>
+</tbody></table></div>
+
+<div class="st"><div class="st-h"><span class="st-n">2</span><span class="st-t">Score history</span></div><div class="st-b">Click <strong>See score history</strong> on the card. You get the score plotted by month plus the event log behind it, with every change listed against the date and the reason for it.<img src="img/lead-score-history.png" alt="Lead score history panel showing the score plotted by month and a table of each change with the points gained or lost and the event that caused it"></div></div>
+
+<div class="co co-i"><div class="tg">Reading the history</div>In this example the contact lost 10 points when <strong>Number of Employees</strong> was updated on the company record. Company data drives the fit half of the score, so one correction on a company shifts the score of every contact attached to it. When a score looks wrong, check the company record before anything else.</div>
+
+<div class="ss"><h3>Engagement: what the contact does</h3>
+<p class="desc">Activity signals, scored by frequency. Every page view, form, open and click adds up, so repeat activity keeps adding points.</p></div>
+
+<div class="tbl-wrap"><table class="tbl">
+<thead><tr><th>Signal</th><th>How it counts</th><th class="num">Points</th></tr></thead>
+<tbody>
+<tr><td><strong>Page visited</strong></td><td>Any page on the Solarus site, counted every time</td><td class="num pts">+1</td></tr>
+<tr><td><strong>Form submission</strong></td><td>Main site forms, counted every time</td><td class="num pts">+1</td></tr>
+<tr><td><strong>Email opened</strong></td><td>Sales (1:1) emails and marketing emails alike</td><td class="num pts">+1</td></tr>
+<tr><td><strong>Email link clicked</strong></td><td>Sales (1:1) emails and marketing emails alike</td><td class="num pts">+1</td></tr>
+</tbody></table></div>
+
+<div class="ss"><h3>Engagement recency</h3>
+<p class="desc">How recently the contact last engaged. Only one of these applies at a time, and the more recent the engagement, the higher the award.</p></div>
+
+<div class="tbl-wrap"><table class="tbl">
+<thead><tr><th>Last engagement</th><th>Reading</th><th class="num">Points</th></tr></thead>
+<tbody>
+<tr><td><strong>Under 30 days</strong></td><td>Active right now, so call them</td><td class="num pts">+20</td></tr>
+<tr><td><strong>31 to 90 days</strong></td><td>Still warm</td><td class="num pts">+14</td></tr>
+<tr><td><strong>91 to 180 days</strong></td><td>Cooling off</td><td class="num pts">+8</td></tr>
+<tr><td><strong>181 to 360 days</strong></td><td>Nearly dormant</td><td class="num pts">+4</td></tr>
+</tbody></table></div>
+
+<div class="co co-w"><div class="tg">No decay</div>Points earned from activity are not removed over time. What changes as a contact goes quiet is the <strong>recency</strong> award above, which steps down from +20 to +4 the longer they stay silent.</div>
+
+<div class="ss"><h3>Fit: who the company is</h3>
+<p class="desc">Firmographics pulled from the associated company record. These reward the profile Solarus sells to best: smaller businesses inside the service territory, on a real company domain.</p></div>
+
+<div class="tbl-wrap"><table class="tbl">
+<thead><tr><th>Attribute</th><th>Condition</th><th class="num">Points</th></tr></thead>
+<tbody>
+<tr><td rowspan="4"><strong>Company size</strong></td><td>Fewer than 75 employees</td><td class="num pts">+32</td></tr>
+<tr><td>75 to 150 employees</td><td class="num pts">+22</td></tr>
+<tr><td>151 to 500 employees</td><td class="num pts">+14</td></tr>
+<tr><td>More than 500 employees</td><td class="num pts">+10</td></tr>
+<tr><td><strong>Core territory</strong></td><td>Wisconsin Rapids, Nekoosa, Port Edwards, Rudolph, Strongs Prairie, Plover, Marshfield, Manawa</td><td class="num pts">+36</td></tr>
+<tr><td><strong>Secondary territory</strong></td><td>Stevens Point, Wausau, Mosinee, Weston, Schofield, Rothschild, Kronenwetter, Waupaca, New London, Clintonville, Wautoma, Adams, Merrill, Antigo, Tomahawk</td><td class="num pts">+16</td></tr>
+<tr><td><strong>Business domain</strong></td><td>Company email is on a real domain, not a free or disposable one (Gmail, Yahoo, Charter, Frontier, Mailinator and similar)</td><td class="num pts">+8</td></tr>
+</tbody></table></div>
+
+<div class="ss"><h3>What pulls a score down</h3>
+<p class="desc">Signals that the contact is outside the footprint or has told us to stop emailing.</p></div>
+
+<div class="tbl-wrap"><table class="tbl">
+<thead><tr><th>Signal</th><th>What it means</th><th class="num">Points</th></tr></thead>
+<tbody>
+<tr><td><strong>Outside Wisconsin</strong></td><td>The associated company is not in the service state</td><td class="num pts pts-n">&minus;100</td></tr>
+<tr><td><strong>Unsubscribed from all email</strong></td><td>Global opt-out on the contact</td><td class="num pts pts-n">&minus;16</td></tr>
+<tr><td><strong>Opted out of marketing email</strong></td><td>Marketing communications declined</td><td class="num pts pts-n">&minus;16</td></tr>
+<tr><td><strong>Opted out of 1-to-1 email</strong></td><td>Sales emails declined</td><td class="num pts pts-n">&minus;16</td></tr>
+<tr><td><strong>Hard bounce</strong></td><td>The email address is undeliverable</td><td class="num pts pts-n">&minus;16</td></tr>
+</tbody></table></div>
+
+<div class="warning-box"><strong>The territory rule is the strongest in the model.</strong> A company outside Wisconsin loses 100 points, more than any other single rule awards. That is deliberate: no amount of website activity should push an out-of-area lead to the top of your list.</div>
+
+<div class="ss"><h3>How the database looks today</h3>
+<p class="desc">The model was turned on 2 August 2026. Admins can see the whole picture in the lead scoring settings, on the <strong>Leadscore - B2B</strong> score itself.</p></div>
+
+<figure class="shot"><img src="img/lead-score-overview.png" alt="Leadscore - B2B overview in HubSpot: 42,721 contacts in total, 279 scored, average score 6.19, minimum minus 84, maximum 100, with the score distribution grid below"><figcaption>The distribution grid crosses fit (A to C, vertical) with engagement (1 to 3, horizontal). A1 is the top-right corner, C3 the bottom-left.</figcaption></figure>
+
+<div class="co co-p"><div class="tg">What to expect on a record</div>Of the 42,721 contacts in the portal, <strong>279</strong> currently carry a score and 256 of those sit in <strong>C3</strong>. Most of the database is residential and has no company attached, so it is never scored. Opening a contact and finding no score is normal, not a bug.</div>
+
+<hr class="section-divider">
+
+<!-- VIII. GOALS -->
+<div class="sh" id="goals"><span class="nm">VIII</span><h2>Goals &amp; Targets</h2></div><div class="sl"></div>
+
+<div class="ss"><h3>Your targets</h3>
+<p class="desc">Activity goals are set per rep and tracked automatically from what you log in HubSpot. Nothing here needs to be reported by hand: log the call and the number moves.</p></div>
+
+<div class="tbl-wrap"><table class="tbl">
+<thead><tr><th>Target</th><th>What counts</th><th class="num">Per month</th><th class="num">Per year</th></tr></thead>
+<tbody>
+<tr><td><strong>Calls made</strong></td><td>Calls logged against a contact or deal record</td><td class="num">40</td><td class="num">480</td></tr>
+<tr><td><strong>New-customer outreaches</strong></td><td>Outreach to contacts who are not customers yet</td><td class="num">12</td><td class="num">144</td></tr>
+<tr><td><strong>Existing customer outreaches</strong></td><td>Outreach to contacts who are already customers</td><td class="num">20</td><td class="num">240</td></tr>
+</tbody></table></div>
+
+<div class="co co-d"><div class="tg">Across the team</div>With eight reps carrying these targets, the team-level goals for 2026 are <strong>3,840 calls</strong> and <strong>1,152 new-customer outreaches</strong>.</div>
+
+<div class="ss"><h3>Where to check your progress</h3>
+<p class="desc">Two places, depending on whether you want your own number or the whole team's.</p></div>
+
+<div class="st"><div class="st-h"><span class="st-n">1</span><span class="st-t">The Goals dashboard</span></div><div class="st-b">Go to <strong>Reporting &rarr; Dashboards &rarr; Goals</strong>. Each report plots what every rep has done against the goal line, for the current month and the full year side by side. Find your name on the vertical axis.<img src="img/goals-dashboard.png" alt="Solarus Goals dashboard in HubSpot showing calls made and outreach reports per rep against their targets"></div></div>
+
+<div class="st"><div class="st-h"><span class="st-n">2</span><span class="st-t">The Goals overview</span></div><div class="st-b">Go to <strong>Reporting &rarr; Goals</strong> for the roll-up: total progress against each goal for the year, with a completion bar. Use the <strong>User performance</strong> tab to see the breakdown rep by rep.<img src="img/goals-overview.png" alt="HubSpot Goals overview listing the Calls Made and New-customer outreaches goals with total progress bars"></div></div>
+
+<div class="note-box"><strong>Progress only counts logged activity.</strong> A call made from 3CX registers automatically; a call made from a personal phone does not. If the number looks low, check that the activity was logged against the record. See <a href="#calling">3CX Calling</a> and <a href="#emails">Emails &amp; Templates</a>.</div>
+
+<hr class="section-divider">
+
+<!-- IX. USEFUL HUBSPOT LINKS -->
+<div class="sh" id="links"><span class="nm">IX</span><h2>Useful HubSpot Links</h2></div><div class="sl"></div>
 <div class="ss"><h3>Useful links to set up HubSpot (How-to's)</h3><p class="desc">Quick-access links to official HubSpot guides.</p></div>
 <div class="st"><div class="st-h"><span class="st-n">1</span><span class="st-t">Connect your email account</span></div><div class="st-b">Link your inbox to HubSpot.<br><a href="https://knowledge.hubspot.com/connected-email/connect-your-inbox-to-hubspot" target="_blank">Open HubSpot Guide &rarr;</a></div></div>
 <div class="st"><div class="st-h"><span class="st-n">2</span><span class="st-t">HubSpot Chrome extension</span></div><div class="st-b">Track emails and access CRM from your browser.<br><a href="https://knowledge.hubspot.com/connected-email/get-started-with-the-hubspot-sales-chrome-extension" target="_blank">Open HubSpot Guide &rarr;</a></div></div>
@@ -276,7 +410,7 @@ footer{text-align:center;padding:32px 24px 24px;color:var(--tl);font-size:.72em;
 
 </div>
 
-<footer>Solarus x <span>Refindable</span> &middot; HubSpot Learning Hub &middot; Last updated May 2026</footer>
+<footer>Solarus x <span>Refindable</span> &middot; HubSpot Learning Hub &middot; Last updated August 2026</footer>
 
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg></button>
 
