@@ -47,6 +47,11 @@ nav .ll{font-family:'Bebas Neue',sans-serif;font-size:.85em;color:var(--o);lette
 .co-i{background:rgba(52,152,219,.07);border-left:4px solid var(--b)}.co-i .tg{color:var(--b)}
 .co-w{background:var(--ol);border-left:4px solid var(--o)}.co-w .tg{color:var(--o)}
 .co-r{background:rgba(231,76,60,.07);border-left:4px solid var(--r)}.co-r .tg{color:var(--r)}
+.sh[id],.ss[id]{scroll-margin-top:118px}
+.st-b a,.co a{color:var(--o);text-decoration:underline;text-underline-offset:2px;border-radius:3px}
+.st-b a:hover,.co a:hover{color:#e04a20}
+.st-b a:focus-visible,.co a:focus-visible{outline:2px solid var(--o);outline-offset:2px}
+.co code{background:var(--ol);color:var(--o);padding:1px 5px;border-radius:3px;font-size:.85em}
 .confirm{background:rgba(231,76,60,.06);border:2px dashed var(--r);border-radius:8px;padding:10px 14px;margin:10px 0;font-size:.82em;color:var(--r)}
 .dt{width:100%;border-collapse:collapse;margin:14px 0;font-size:.82em;background:#fff;border-radius:8px;overflow:hidden;border:1px solid var(--bd)}
 .dt th{background:var(--d);color:#fff;padding:8px 12px;text-align:left;font-weight:600;font-size:.8em;letter-spacing:.5px;text-transform:uppercase}
@@ -522,6 +527,43 @@ nav{top:46px!important}
 </tbody></table>
 <p>The deal does NOT move out of Program Active (Closed Won). What changes is the subscription status - it goes from Active to Past Due to Cancelled. This is all handled automatically by HubSpot. You don't need to do anything manually.</p>
 </div></div>
+
+<!-- === REF 34: Changing the Broker on a Customer === -->
+<div class="ss" id="broker-change"><h3>Changing the Broker on a Customer</h3></div>
+<p class="desc">A customer was signed up under one broker and now belongs to another. HubSpot does not move them for you. You change it by hand, on two records, in this order.</p>
+
+<div class="co co-r"><div class="tg">READ THIS BEFORE YOU EDIT ANYTHING</div><p>Two things follow the Broker ID. The <strong>broker chain</strong> - the Broker record attached to the contact and to the deal - and the <strong>commission split</strong>, which is calculated from the Broker ID <strong>on the deal</strong>. Change only the contact and the customer will look correct on screen while the commission keeps paying the old broker. Put in the wrong ID and you pay the wrong broker, at the wrong tier.</p></div>
+
+<div class="st"><div class="st-h"><span class="st-n">1</span><span class="st-t">Change It in Two Places, Always</span></div>
+<div class="st-b">
+<p>Broker attribution lives on <strong>two</strong> records, not one: the <strong>contact</strong> and the <strong>deal</strong>. Commission is calculated from the <strong>deal</strong>.</p>
+<p>The automations that copy Broker ID around only run <strong>once, while the field is still empty</strong>. None of them re-run when you edit a value that is already there. That is why this is a manual, two-record job:</p>
+<table class="dt"><thead><tr><th>Automation</th><th>What it does</th><th>Does it re-run when you edit?</th></tr></thead><tbody>
+<tr><td>Copy Broker ID: Company → Contact</td><td>Fills a blank contact Broker ID from the company</td><td><strong>No</strong> - only fires while the contact's Broker ID is empty</td></tr>
+<tr><td>Copy Employer ID &amp; Broker ID: Contact → Deal</td><td>Copies the contact's Broker ID onto the deal</td><td><strong>No</strong> - re-enrollment is off</td></tr>
+<tr><td>Deal → Broker association</td><td>Links the deal to the broker record</td><td><strong>No</strong> - re-enrollment is off</td></tr>
+<tr><td>Broker → Contact association</td><td>Links the contact to the broker record</td><td>Yes - but it <strong>adds</strong> the new broker and does <strong>not</strong> remove the old one</td></tr>
+</tbody></table>
+</div></div>
+
+<div class="st"><div class="st-h"><span class="st-n">2</span><span class="st-t">The Steps</span></div>
+<div class="st-b">
+<p><strong>1. Confirm the new Broker ID first.</strong> Open the <a href="brokers.html">Broker Channel report</a>, search the broker by name and read the <strong>Broker ID</strong> column. Copy that exact value. A name is not enough - several brokers share surnames, and some have sub-codes such as <code>2002-C102</code>.</p>
+<p><strong>2. On the CONTACT record.</strong> In the left sidebar open <strong>Contacts</strong>, search the customer by name or email and open their record. In the left-hand panel, under <strong>Contact information</strong>, find <strong>Broker ID</strong> and set the new value.</p>
+<p><strong>3. On the DEAL record.</strong> In the left sidebar open <strong>Deals</strong>, open the customer's deal in the <strong>Sales Pipeline</strong>, find <strong>Broker ID</strong> and set it to the same value. <em>Do not skip this.</em> This is the field commission reads.</p>
+<p><strong>4. Fix the associations.</strong> On both the contact and the deal, look at the associated <strong>Broker</strong> record in the right-hand panel. The old broker will usually still be attached - remove it, and check the new one is attached. If the new one is missing, re-save the Broker ID field to trigger the association.</p>
+<p><strong>5. Check it landed.</strong> Wait about 5 minutes, then reload the deal. Broker ID, the associated Broker record and the contact should all show the same broker.</p>
+</div></div>
+
+<div class="co co-p"><div class="tg">Check before you save</div><p>Three things: the ID is copied exactly from the Broker ID column, you are on the right customer, and you are editing <strong>both</strong> the contact and the deal. Step 4 is the one people forget - the old broker stays attached until someone removes it by hand.</p></div>
+
+<div class="st"><div class="st-h"><span class="st-n">3</span><span class="st-t">When the Change Takes Effect</span></div>
+<div class="st-b">
+<p>Commission is calculated <strong>per payment</strong>, not once per customer. Changing the Broker ID today changes who is credited for payments processed <strong>from now on</strong>. It does not move payments that have already been reported in a closed month.</p>
+<p><strong>If a closed month needs correcting, do not fix it by editing records.</strong> Raise it with Refindable so the correction is made in the commission report and stays traceable.</p>
+</div></div>
+
+<div class="co co-i"><div class="tg">Sub-codes</div><p>An unregistered sub-code such as <code>2002-A15</code> rolls up to its base broker <code>2002</code> for payment. A registered sub-code with its own broker record keeps its own tier. If you are not sure which one you are looking at, check whether the ID appears in the Broker ID column of the <a href="brokers.html">Broker Channel report</a>.</p></div>
 
 <!-- ═══ IV.I. REFERENCE ═══ -->
 <div class="sh" id="ref"><span class="nm">VI</span><h2>Reference & Glossary</h2></div><div class="sl"></div>
